@@ -1,0 +1,158 @@
+Check Maven version
+[root@ip-172-31-91-89 opt]# mvn -version
+
+Create github account
+
+Create Repository
+Click on Clone or downloads
+
+Copy the path : https://github.com/vinithaneelakandan/devops.git
+
+Login to Linux machin
+
+Check git is available or not
+[ec2-user@ip-172-31-91-89 ~]$ rpm -qa git
+
+Install git
+[ec2-user@ip-172-31-91-89 ~]$ sudo yum install git
+
+Generate ssh key for git account
+[ec2-user@ip-172-31-91-89 ~]$ ssh-keygen -t rsa -b 4096 -C "gnvinithakumari@gmail.com"
+
+Check key generated or not
+
+[ec2-user@ip-172-31-91-89 ~]$ ls -lrt /home/ec2-user/.ssh/id_rsa.pub
+-rw-r--r-- 1 ec2-user ec2-user 751 Nov  8 05:11 /home/ec2-user/.ssh/id_rsa.pub
+
+[ec2-user@ip-172-31-91-89 ~]$ cat /home/ec2-user/.ssh/id_rsa.pub
+-rw-r--r-- 1 ec2-user ec2-user 751 Nov  8 05:11 /home/ec2-user/.ssh/id_rsa.pub
+
+Copy and update the date into git hub
+
+Go to Git hub account
+
+Select settings  SSH and GPG keysSSH Keys  Add New
+
+Paste the key
+
+Now initilise the agent
+
+[ec2-user@ip-172-31-91-89 ~]$ eval "$(ssh-agent -s)"
+[ec2-user@ip-172-31-91-89 ~]$ ssh-add -k ~/.ssh/id_rsa
+[ec2-user@ip-172-31-91-89 ~]$ ssh -T git@github.com
+
+Setup SSH for github for user
+
+[ec2-user@ip-172-31-91-89 ~]$ git config --global user.name "vinithaneelakandan"
+[ec2-user@ip-172-31-91-89 ~]$ git config --global user.name "gnvinithakumari@gmail.com"
+[ec2-user@ip-172-31-91-89 ~]$
+ 
+Clone the git hub repository path
+
+[ec2-user@ip-172-31-91-89 ~]$ git clone https://github.com/vinithaneelakandan/devops.git
+
+
+Verify the repository
+
+[ec2-user@ip-172-31-91-89 ~]$ cd devops/
+
+[ec2-user@ip-172-31-91-89 devops]$ ls –lrta
+
+
+Check the status
+
+[ec2-user@ip-172-31-91-89 devops]$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+
+We are not supposed to on master branch
+So we have to create our own branch
+
+[ec2-user@ip-172-31-91-89 devops]$ git branch vinitha
+
+List of branches
+[ec2-user@ip-172-31-91-89 devops]$ git branch
+* master
+  vinitha
+[ec2-user@ip-172-31-91-89 devops]$
+
+
+Checkout the branch
+[ec2-user@ip-172-31-91-89 devops]$ git checkout vinitha
+
+[ec2-user@ip-172-31-91-89 devops]$ git branch
+  master
+* vinitha
+[ec2-user@ip-172-31-91-89 devops]$
+
+[ec2-user@ip-172-31-91-89 devops]$ vi data.txt
+[ec2-user@ip-172-31-91-89 devops]$ git .add
+git: '.add' is not a git command. See 'git --help'.
+
+The most similar command is
+        add
+[ec2-user@ip-172-31-91-89 devops]$ git status
+On branch vinitha
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        data.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+[ec2-user@ip-172-31-91-89 devops]$ git add .
+[ec2-user@ip-172-31-91-89 devops]$
+
+
+
+
+Commit the repository
+[ec2-user@ip-172-31-91-89 devops]$ git commit -m "FirstCommit"
+
+[ec2-user@ip-172-31-91-89 devops]$ git status
+On branch vinitha
+nothing to commit, working tree clean
+[ec2-user@ip-172-31-91-89 devops]$
+
+
+Push repository
+
+[ec2-user@ip-172-31-91-89 devops]$ git push -u origin vinitha
+Username for 'https://github.com': gnvinithakumari@gmail.com
+Password for 'https://gnvinithakumari@gmail.com@github.com':
+Counting objects: 3, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 328 bytes | 328.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'vinitha' on GitHub by visiting:
+remote:      https://github.com/vinithaneelakandan/devops/pull/new/vinitha
+remote:
+To https://github.com/vinithaneelakandan/devops.git
+ * [new branch]      vinitha -> vinitha
+Branch 'vinitha' set up to track remote branch 'vinitha' from 'origin'.
+[ec2-user@ip-172-31-91-89 devops]$
+
+Fetch the data  and pull it
+
+[ec2-user@ip-172-31-91-89 devops]$ git fetch
+[ec2-user@ip-172-31-91-89 devops]$ git pull
+Already up to date.
+[ec2-user@ip-172-31-91-89 devops]$
+
+[ec2-user@ip-172-31-91-89 devops]$ git status
+On branch vinitha
+Your branch is up to date with 'origin/vinitha'.
+
+nothing to commit, working tree clean
+[ec2-user@ip-172-31-91-89 devops]$ git branch
+  master
+* vinitha
+[ec2-user@ip-172-31-91-89 devops]$
+
+
+
+
+
